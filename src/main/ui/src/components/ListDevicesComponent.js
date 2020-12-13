@@ -14,11 +14,11 @@ class ListDevicesComponent extends Component {
     }
 
     addDevice() {
-        this.props.history.push("/add-device");
+        this.props.history.push("/add-device/_add");
     }
 
     editDevice(id) {
-        this.props.history.push(`/update-device/${id}`);
+        this.props.history.push(`/add-device/${id}`);
     }
 
     componentDidMount() {

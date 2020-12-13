@@ -16,8 +16,8 @@ function App() {
                     <Switch> http://localhost:3000/
                         <Route path="/" exact component={ListDevicesComponent}></Route>
                         <Route path="/devices" component={ListDevicesComponent}></Route>
-                        <Route path="/add-device" component={CreateDeviceComponent}></Route>
-                        <Route path="/update-device/:id" component={UpdateDeviceComponent}></Route>
+                        <Route path="/add-device/:id" component={CreateDeviceComponent}></Route>
+                        {/*<Route path="/update-device/:id" component={UpdateDeviceComponent}></Route>*/}
                     </Switch>
                 </div>
                 <FooterComponent />
