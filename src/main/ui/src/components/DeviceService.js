@@ -20,6 +20,10 @@ class DeviceService {
         //deviceId == 1 => http://localhost:8080/api/devices/1
         return axios.put(DEVICE_API_BASE_URL + "/" + deviceId, device);
     }
+
+    deleteDevice(deviceId) {
+        return axios.delete(DEVICE_API_BASE_URL + "/" + deviceId);
+    }
 }
 
 export default new DeviceService()

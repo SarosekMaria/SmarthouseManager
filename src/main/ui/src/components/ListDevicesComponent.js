@@ -7,6 +7,8 @@ class ListDevicesComponent extends Component {
 
         this.addDevice = this.addDevice.bind(this);
         this.editDevice = this.editDevice.bind(this);
+        this.deleteDevice = this.deleteDevice.bind(this);
+        this.viewDevice = this.viewDevice.bind(this);
 
         this.state = {
             devices: []
@@ -19,6 +21,18 @@ class ListDevicesComponent extends Component {
 
     editDevice(id) {
         this.props.history.push(`/add-device/${id}`);
+    }
+
+    deleteDevice(id) {
+        DeviceService.deleteDevice(id).then((res) => {
+           this.setState({
+              devices: this.state.devices.filter(device => device.id !== id)
+           });
+        });
+    }
+
+    viewDevice(id) {
+        this.props.history.push(`/view-device/${id}`);
     }
 
     componentDidMount() {
@@ -51,7 +65,23 @@ class ListDevicesComponent extends Component {
                                             <td>{device.name}</td>
                                             <td>{device.description}</td>
                                             <td>
-                                                <button onClick={() => this.editDevice(device.id)} className="btn btn-info">Update</button>
+                                                <button
+                                                    onClick={() => this.editDevice(device.id)}
+                                                    className="btn btn-info">
+                                                    Update
+                                                </button>
+                                                <button
+                                                    style={{marginLeft: "20px"}}
+                                                    onClick={() => this.deleteDevice(device.id)}
+                                                    className="btn btn-danger">
+                                                    Delete
+                                                </button>
+                                                <button
+                                                    style={{marginLeft: "20px"}}
+                                                    onClick={() => this.viewDevice(device.id)}
+                                                    className="btn btn-info">
+                                                    View
+                                                </button>
                                             </td>
                                         </tr>
                                 )

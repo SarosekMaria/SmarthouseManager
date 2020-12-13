@@ -7,6 +7,9 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
@@ -47,5 +50,18 @@ public class DeviceController {
         Device updatedDevice = smarthouseRepo.save(device);
 
         return ResponseEntity.ok(updatedDevice);
+    }
+
+    //delete device REST API
+    @DeleteMapping("/devices/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteDevice(@PathVariable Long id) {
+        Device device = smarthouseRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Device with id " + id + " doesn't exist"));
+
+        smarthouseRepo.delete(device);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+
+        return ResponseEntity.ok(response);
     }
 }
