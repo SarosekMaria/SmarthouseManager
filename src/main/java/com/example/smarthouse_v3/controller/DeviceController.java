@@ -1,67 +1,48 @@
 package com.example.smarthouse_v3.controller;
 
 import com.example.smarthouse_v3.domain.Device;
-import com.example.smarthouse_v3.repository.SmarthouseRepo;
+import com.example.smarthouse_v3.service.DeviceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class DeviceController {
+
     @Autowired
-    private SmarthouseRepo smarthouseRepo;
+    private DeviceServiceImpl deviceService;
 
     //get all devices
     @GetMapping("/devices")
     public Iterable<Device> getAllDevices() {
-        return smarthouseRepo.findAll();
+        return deviceService.getAllDevices();
     }
 
     //create device REST API
     @PostMapping("/devices")
     public Device createDevice(@RequestBody Device device) {
-        return smarthouseRepo.save(device);
+        return deviceService.createDevice(device);
     }
 
     //get device by id REST API
     @GetMapping("/devices/{id}")
     public ResponseEntity<Device> getDeviceById(@PathVariable Long id) {
-        Device device = smarthouseRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Device with id " + id + "  doesn't exist"));
-
-        return ResponseEntity.ok(device);
+        return deviceService.getDeviceById(id);
     }
 
     //update device REST API
     @PutMapping("/devices/{id}")
     public ResponseEntity<Device> updateDevice(@PathVariable Long id, @RequestBody Device extDevice) {
-        Device device = smarthouseRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Device with id " + id + " doesn't exist"));
-
-        device.setName(extDevice.getName());
-        device.setDescription(extDevice.getDescription());
-
-        Device updatedDevice = smarthouseRepo.save(device);
-
-        return ResponseEntity.ok(updatedDevice);
+        return deviceService.updateDevice(id, extDevice);
     }
 
     //delete device REST API
     @DeleteMapping("/devices/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteDevice(@PathVariable Long id) {
-        Device device = smarthouseRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Device with id " + id + " doesn't exist"));
-
-        smarthouseRepo.delete(device);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-
-        return ResponseEntity.ok(response);
+        return deviceService.deleteDevice(id);
     }
 }
