@@ -24,6 +24,10 @@ class DeviceService {
     deleteDevice(deviceId) {
         return axios.delete(DEVICE_API_BASE_URL + "/" + deviceId);
     }
+
+    updateErrors(device, deviceId) {
+        return axios.put(DEVICE_API_BASE_URL + "/errors/" + deviceId, device);
+    }
 }
 
 export default new DeviceService()

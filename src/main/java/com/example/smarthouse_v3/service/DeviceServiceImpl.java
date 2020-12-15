@@ -54,4 +54,14 @@ public class DeviceServiceImpl implements DeviceService {
         return smarthouseRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Device with id " + id + " doesn't exist"));
     }
+
+    public ResponseEntity<Device> updateErrors(Long id, Device extDevice) {
+        Device device = getDevice(id);
+
+        device.setNum_of_errors(extDevice.getNum_of_errors() - 1);
+
+        Device updatedDevice = smarthouseRepo.save(device);
+
+        return ResponseEntity.ok(updatedDevice);
+    }
 }

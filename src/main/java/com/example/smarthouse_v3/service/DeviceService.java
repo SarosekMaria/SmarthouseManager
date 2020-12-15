@@ -16,4 +16,5 @@ public interface DeviceService {
     public ResponseEntity<Device> getDeviceById(Long id);
     public ResponseEntity<Device> updateDevice(Long id, Device extDevice);
     public ResponseEntity<Map<String, Boolean>> deleteDevice(Long id);
+    public ResponseEntity<Device> updateErrors(Long id, Device extDevice);
 }

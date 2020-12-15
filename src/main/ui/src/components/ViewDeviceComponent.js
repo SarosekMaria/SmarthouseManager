@@ -11,6 +11,7 @@ class ViewDeviceComponent extends Component {
         }
 
         this.getNotification = this.getNotification.bind(this);
+        this.correctError = this.correctError.bind(this);
     }
 
     componentDidMount() {
@@ -20,6 +21,20 @@ class ViewDeviceComponent extends Component {
            });
            console.log("in View this.state.device: ", this.state.device);
         });
+    }
+
+    correctError(event) {
+        event.preventDefault();
+        let device  = {
+            name: this.state.device.name,
+            description: this.state.device.description,
+            num_of_errors: this.state.device.num_of_errors
+        };
+        console.log("device for save => " + JSON.stringify(device));
+
+        DeviceService.updateErrors(device, this.state.id).then(res => {
+            this.props.history.push("/devices");
+        })
     }
 
     getNotification() {
@@ -68,6 +83,10 @@ class ViewDeviceComponent extends Component {
                 <div className="col-md-6 offset-md-3 mt-3">
                     {this.getNotification()}
                 </div>
+                {this.state.device.num_of_errors !== 0 ?
+                    <button className="btn btn-primary col-md-6 offset-md-3 mt-3" onClick={this.correctError}>
+                        Correct Error
+                    </button> : <div></div>}
             </div>
         )
     }

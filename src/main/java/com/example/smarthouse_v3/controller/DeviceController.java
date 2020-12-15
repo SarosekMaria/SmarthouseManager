@@ -45,4 +45,9 @@ public class DeviceController {
     public ResponseEntity<Map<String, Boolean>> deleteDevice(@PathVariable Long id) {
         return deviceService.deleteDevice(id);
     }
+
+    @PutMapping("/devices/errors/{id}")
+    public ResponseEntity<Device> updateErrors(@PathVariable Long id, @RequestBody Device extDevice) {
+        return deviceService.updateErrors(id, extDevice);
+    }
 }
