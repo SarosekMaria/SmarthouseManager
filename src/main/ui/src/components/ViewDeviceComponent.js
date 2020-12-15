@@ -85,7 +85,7 @@ class ViewDeviceComponent extends Component {
                 </div>
                 {this.state.device.num_of_errors !== 0 ?
                     <button className="btn btn-primary col-md-6 offset-md-3 mt-3" onClick={this.correctError}>
-                        Correct Error
+                        Error Management
                     </button> : <div></div>}
             </div>
         )

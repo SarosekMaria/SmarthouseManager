@@ -1,5 +1,6 @@
 package com.example.smarthouse_v3.service;
 
+import com.example.smarthouse_v3.business_logic.BasicBusinessLogicClass;
 import com.example.smarthouse_v3.domain.Device;
 import com.example.smarthouse_v3.repository.SmarthouseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,8 @@ public class DeviceServiceImpl implements DeviceService {
     public ResponseEntity<Device> updateErrors(Long id, Device extDevice) {
         Device device = getDevice(id);
 
-        device.setNum_of_errors(extDevice.getNum_of_errors() - 1);
+        BasicBusinessLogicClass.correctErrors(device);
+//        device.setNum_of_errors(extDevice.getNum_of_errors() - 1);
 
         Device updatedDevice = smarthouseRepo.save(device);
 
