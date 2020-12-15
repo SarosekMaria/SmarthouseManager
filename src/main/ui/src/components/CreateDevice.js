@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import DeviceService from "./DeviceService";
 
-class CreateDeviceComponent extends Component {
+class CreateDevice extends Component {
     constructor(props) {
         super(props);
 
@@ -105,4 +105,4 @@ class CreateDeviceComponent extends Component {
     }
 }
 
-export default CreateDeviceComponent
+export default CreateDevice

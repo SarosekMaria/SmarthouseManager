@@ -1,4 +1,4 @@
-package com.example.smarthouse_v3.controller;
+package com.example.smarthouse_v3.gateway;
 
 import com.example.smarthouse_v3.domain.Device;
 import com.example.smarthouse_v3.service.DeviceServiceImpl;
@@ -11,7 +11,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
-public class DeviceController {
+public class DeviceGateway {
 
     @Autowired
     private DeviceServiceImpl deviceService;

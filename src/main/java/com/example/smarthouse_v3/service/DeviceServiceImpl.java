@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class DeviceServiceImpl implements DeviceService {
+public class DeviceServiceImpl extends BasicBusinessLogicClass implements DeviceService {
     @Autowired
     private SmarthouseRepo smarthouseRepo;
 
@@ -59,8 +59,8 @@ public class DeviceServiceImpl implements DeviceService {
     public ResponseEntity<Device> updateErrors(Long id, Device extDevice) {
         Device device = getDevice(id);
 
-        BasicBusinessLogicClass.correctErrors(device);
-//        device.setNum_of_errors(extDevice.getNum_of_errors() - 1);
+//        BasicBusinessLogicClass.correctErrors(device);
+        device.setNum_of_errors(extDevice.getNum_of_errors() - 1);
 
         Device updatedDevice = smarthouseRepo.save(device);
 

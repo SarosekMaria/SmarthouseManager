@@ -6,7 +6,7 @@ public class BasicBusinessLogicClass {
     public void run() {
     }
 
-    public static void correctErrors(Device device) {
-        device.setNum_of_errors(device.getNum_of_errors() - 1);
-    }
+//    public static void correctErrors(Device device) {
+//        device.setNum_of_errors(device.getNum_of_errors() - 1);
+//    }
 }
