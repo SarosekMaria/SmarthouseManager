@@ -13,7 +13,8 @@ class CreateDeviceComponent extends Component {
         this.state = {
             id: this.props.match.params.id,
             name: "",
-            description: ""
+            description: "",
+            num_of_errors: 0
         }
     }
 
@@ -25,7 +26,8 @@ class CreateDeviceComponent extends Component {
                 let device = res.data;
                 this.setState({
                     name: device.name,
-                    description: device.description
+                    description: device.description,
+                    num_of_errors: device.num_of_errors
                 });
             });
         }
@@ -33,7 +35,7 @@ class CreateDeviceComponent extends Component {
 
     saveOrUpdateDevice = (event) => {
         event.preventDefault();
-        let device  = {name: this.state.name, description: this.state.description};
+        let device  = {name: this.state.name, description: this.state.description, num_of_errors: this.state.num_of_errors};
         console.log("device for save => " + JSON.stringify(device));
 
         if (this.state.id === "_add") {

@@ -1,25 +1,29 @@
 package com.example.smarthouse_v3.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "devices")
 public class Device {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
+    @Column(name = "num_of_errors")
+    private Long num_of_errors;
 
     public Device() {
     }
 
-    public Device(String name, String description) {
+    public Device(String name, String description, Long num_of_errors) {
+        super();
         this.name = name;
         this.description = description;
+        this.num_of_errors = num_of_errors;
     }
 
     public Long getId() {
@@ -44,5 +48,13 @@ public class Device {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getNum_of_errors() {
+        return num_of_errors;
+    }
+
+    public void setNum_of_errors(Long num_of_errors) {
+        this.num_of_errors = num_of_errors;
     }
 }
