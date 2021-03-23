@@ -9,6 +9,8 @@ class ListDevices extends Component {
         this.editDevice = this.editDevice.bind(this);
         this.deleteDevice = this.deleteDevice.bind(this);
         this.viewDevice = this.viewDevice.bind(this);
+        this.test = this.test.bind(this);
+        this.alert = this.alert.bind(this);
 
         this.state = {
             devices: []
@@ -21,6 +23,14 @@ class ListDevices extends Component {
 
     editDevice(id) {
         this.props.history.push(`/add-device/${id}`);
+    }
+
+    test() {
+        this.props.history.push(`/test`);
+    }
+
+    alert() {
+        this.props.history.push(`/alert`);
     }
 
     deleteDevice(id) {
@@ -89,6 +99,12 @@ class ListDevices extends Component {
                         </tbody>
                     </table>
                 </div>
+                <div>
+                    <button id="alertButton" className="btn btn-danger btn-block" onClick={this.alert}>Alert!</button>
+                </div>
+                {/*<div>*/}
+                {/*    <button id="test_button" className="btn btn-primary" onClick={this.test}>Test!</button>*/}
+                {/*</div>*/}
             </div>
         )
     }

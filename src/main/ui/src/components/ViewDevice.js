@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import DeviceService from "./DeviceService";
+import getNotification from "./Utils";
 
 class ViewDevice extends Component {
     constructor(props) {
@@ -9,8 +10,6 @@ class ViewDevice extends Component {
             id: this.props.match.params.id,
             device: {}
         }
-
-        this.getNotification = this.getNotification.bind(this);
         this.correctError = this.correctError.bind(this);
     }
 
@@ -37,28 +36,6 @@ class ViewDevice extends Component {
         })
     }
 
-    getNotification() {
-        if (this.state.device.num_of_errors === 0) {
-            return (
-                <div className="alert alert-success" role="alert">
-                    Everything is right.
-                </div>
-            )
-        } else if (this.state.device.num_of_errors < 5) {
-            return (
-                <div className="alert alert-warning" role="alert">
-                    There are some warnings! Please, pay attention for it.
-                </div>
-            )
-        } else {
-            return (
-                <div className="alert alert-danger" role="alert">
-                    Too many errors!!! You need to replace it.
-                </div>
-            )
-        }
-    }
-
     render() {
         return (
             <div>
@@ -81,7 +58,7 @@ class ViewDevice extends Component {
                     </div>
                 </div>
                 <div className="col-md-6 offset-md-3 mt-3">
-                    {this.getNotification()}
+                    {getNotification(this.state.device.num_of_errors)}
                 </div>
                 {this.state.device.num_of_errors !== 0 ?
                     <button className="btn btn-primary col-md-6 offset-md-3 mt-3" onClick={this.correctError}>
@@ -92,4 +69,4 @@ class ViewDevice extends Component {
     }
 }
 
-export default ViewDevice
+export default ViewDevice;
