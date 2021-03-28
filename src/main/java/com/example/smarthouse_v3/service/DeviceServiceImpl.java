@@ -3,6 +3,11 @@ package com.example.smarthouse_v3.service;
 import com.example.smarthouse_v3.business_logic.BasicBusinessLogicClass;
 import com.example.smarthouse_v3.domain.Device;
 import com.example.smarthouse_v3.repository.SmarthouseRepo;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@AllArgsConstructor
 public class DeviceServiceImpl extends BasicBusinessLogicClass implements DeviceService {
-    @Autowired
+//    @Autowired
     private SmarthouseRepo smarthouseRepo;
 
     public Iterable<Device> getAllDevices() {

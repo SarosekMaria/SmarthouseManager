@@ -5,6 +5,7 @@ public class FireAlert implements AlertSignal {
 
     @Override
     public String alertOn() {
+        System.out.println("Fire alert is ON!");
         return "Fire alert is ON!";
     }
 
